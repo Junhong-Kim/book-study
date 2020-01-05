@@ -1,4 +1,4 @@
-package kim.junhong.bookstudy.entity;
+package kim.junhong.bookstudy.model;
 
 import lombok.Getter;
 import lombok.Setter;

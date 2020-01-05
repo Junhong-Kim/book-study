@@ -1,4 +1,4 @@
-package kim.junhong.bookstudy.entity;
+package kim.junhong.bookstudy.model;
 
 public enum  ApplyStatus {
 
