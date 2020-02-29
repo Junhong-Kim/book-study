@@ -11,7 +11,7 @@ public class BookService {
 
     private final KakaoConfig kakaoConfig;
 
-    public SearchBookResponse getSearchBooks(String query, String page, String size) {
+    public SearchBookResponse getSearchBook(String query, String page, String size) {
         return kakaoConfig.kakaoApi()
                 .get()
                 .uri(uriBuilder -> uriBuilder

@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api/v1/books")
+@RequestMapping("/api/v1/book")
 @RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
 
     @GetMapping("/search")
-    public SearchBookResponse getSearchBooks(HttpServletRequest request) {
-        return bookService.getSearchBooks(
+    public SearchBookResponse getSearchBook(HttpServletRequest request) {
+        return bookService.getSearchBook(
                 request.getParameter("query"),
                 request.getParameter("page"),
                 request.getParameter("size")
