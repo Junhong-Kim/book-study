@@ -3,8 +3,10 @@ package kim.junhong.bookstudy.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -13,14 +15,11 @@ public class Account extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long accountId;
 
-    @Column
+    private AccountType accountType;
+    private String username;
     private String email;
-
-    @Column
     private String accessToken;
-
-    @Column
     private String refreshToken;
 }
