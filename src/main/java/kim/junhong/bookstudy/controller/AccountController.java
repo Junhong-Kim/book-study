@@ -23,8 +23,8 @@ public class AccountController {
     private final JwtUtil jwtUtil;
     private final AccountService accountService;
 
-    @PostMapping("/login/email")
-    public AuthResponse loginWithEmail(@RequestBody AuthRequest authRequest) throws Throwable {
+    @PostMapping("/signIn/email")
+    public AuthResponse signInWithEmail(@RequestBody AuthRequest authRequest) throws Throwable {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
