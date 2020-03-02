@@ -23,7 +23,7 @@ public abstract class BaseEntity {
     private LocalDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.VALID;
 
     @Version
     private int version;

@@ -1,27 +1,27 @@
 package kim.junhong.bookstudy.service;
 
-import kim.junhong.bookstudy.dto.SecurityAccount;
+import kim.junhong.bookstudy.dto.SignUpRequest;
 import kim.junhong.bookstudy.model.Account;
-import kim.junhong.bookstudy.model.Status;
+import kim.junhong.bookstudy.model.AccountType;
 import kim.junhong.bookstudy.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AccountService implements UserDetailsService {
+public class AccountService {
 
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Account> optionalAccount = accountRepository.findByUsernameAndStatus(username, Status.VALID);
-        Account account = optionalAccount.orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 사용자입니다."));
-        return new SecurityAccount(account);
+    public Account signUpWithEmail(SignUpRequest dto) {
+        Account newAccount = Account.builder()
+                .accountType(AccountType.EMAIL)
+                .username(dto.getUsername())
+                .password(passwordEncoder.encode(dto.getPassword()))
+                .email(dto.getUsername())
+                .build();
+        return accountRepository.save(newAccount);
     }
 }
